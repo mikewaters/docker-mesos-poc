@@ -6,9 +6,9 @@ resource "libvirt_domain" "terraform_test" {
   network_interface = {
     mac = "52:54:00:36:c0:65"
   }
-    provisioner "remote-exec" {
-        inline = "ping yahoo.com"
-    }
+    #provisioner "remote-exec" {
+    #    inline = "uname -a"
+    #}
   disk {
      volume_id = "${libvirt_volume.ubuntu_base.id}"
     #volume_id = "/var/lib/libvirt/images/ubuntu.img"
