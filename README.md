@@ -1,6 +1,8 @@
 # Build framework PoC
 ## Install
-Install terraform using install/install-terraform.sh
+Install terraform using 
+
+    install/install-terraform.sh
 
 ## Dirs
 ### aws
@@ -10,6 +12,6 @@ shared shell scripts etc.
 ### libvirt
 experimental terraform provisioning for libvirt
 
-run install/install-libvirt.sh
+    install/install-libvirt.sh
 ### vagrant
 vagrantfile for testing locally
