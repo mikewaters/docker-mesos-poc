@@ -1,6 +1,27 @@
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/wily64"
-  config.vm.provider :vmware_fusion do |v, override|
-    v.vmx["memsize"] = "1024"
+  config.vm.box = "ubuntu-14.04-amd64-vmwarefusion"
+  config.vm.box_url = "https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-14.04-amd64-vmwarefusion.box"
+
+  config.vm.define "master" do |master|
+      master.vm.provider :vmware_fusion do |v, override|
+        v.vmx["memsize"] = "3192"
+      end
+      master.vm.provision "shell", path: "../files/base.sh"
+      master.vm.provision "shell", path: "../files/mesos-master.sh"
+      master.vm.network "forwarded_port", guest: 8080, host: 18080
+      master.vm.network "forwarded_port", guest: 5050, host: 15050
+      master.vm.network "forwarded_port", guest: 5051, host: 15051
+      master.vm.network "forwarded_port", guest: 2181, host: 12181
   end
+  config.vm.define "slave" do |slave|
+      slave.vm.provider :vmware_fusion do |v, override|
+        v.vmx["memsize"] = "2048"
+      end
+      slave.vm.provision "shell", path: "../files/base.sh"
+      slave.vm.provision "shell", path: "../files/mesos-slave.sh"
+      slave.vm.network "forwarded_port", guest: 8080, host: 28080
+      slave.vm.network "forwarded_port", guest: 5050, host: 25050
+      slave.vm.network "forwarded_port", guest: 5051, host: 25051
+      slave.vm.network "forwarded_port", guest: 2181, host: 22181
+    end
 end

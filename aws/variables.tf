@@ -9,7 +9,7 @@ variable "key_file" {}
 
 variable "amis" {
     default = {
-        us-east-1 = "ami-8ceef9e6"
+        us-east-1 = "ami-d25e48b8"  # ubuntu 14.04 lts hvm:instance-store
     }
 }
 

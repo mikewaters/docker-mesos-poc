@@ -30,7 +30,7 @@ resource "aws_security_group" "mesos-sg" {
     from_port = 2181
     to_port = 2181
     protocol = "tcp"
-    self = true # This will work in the next release of terrarform > v0.2.2
+    self = true     
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
@@ -47,8 +47,8 @@ resource "aws_instance" "mesos-master" {
   }
   provisioner "remote-exec" {
     scripts = [
-      "files/install-common.sh",
-      "files/setup-master.sh"
+      "../files/base.sh",
+      "../files/mesos-master.sh"
     ]
   }
 }
@@ -78,8 +78,8 @@ resource "aws_instance" "mesos-master" {
 #  }
 #  provisioner "remote-exec" {
 #    scripts = [
-#      "files/install-common.sh",
-#      "files/setup-slave.sh"
+#      "../files/base.sh",
+#      "../files/mesos-slave.sh"
 #    ]
 #  }
 #}
