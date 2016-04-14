@@ -17,13 +17,13 @@ Vagrant.configure("2") do |config|
         v.vmx["memsize"] = "2048"
       end
 
-      master.vm.provision "shell", path: "../files/base.sh"
-      master.vm.provision "shell", path: "../files/mesos-master.sh"
+      master.vm.provision "shell", path: "../../files/base.sh"
+      master.vm.provision "shell", path: "../../files/mesos-master.sh"
       master.vm.provision "shell", inline: "echo zk://#{master_ip}:2181/mesos > /etc/mesos/zk"
       master.vm.provision "shell", inline: "echo #{master_ip} > /etc/mesos-master/ip"
       master.vm.provision "shell", inline: "echo #{cluster_name} > /etc/mesos-master/cluster"
       master.vm.provision "shell", inline: "echo 1 > /etc/zookeeper/conf/myid"
-      master.vm.provision "shell", path: "../files/mesos-master-start.sh"
+      master.vm.provision "shell", path: "../../files/mesos-master-start.sh"
       #TODO(mikew) will need to set quorum config in multimaster
 
       master.vm.provision "shell" do |s|
@@ -50,11 +50,11 @@ Vagrant.configure("2") do |config|
         v.vmx["memsize"] = "4096"
       end
 
-      slave1.vm.provision "shell", path: "../files/base.sh"
-      slave1.vm.provision "shell", path: "../files/mesos-slave.sh"
+      slave1.vm.provision "shell", path: "../../files/base.sh"
+      slave1.vm.provision "shell", path: "../../files/mesos-slave.sh"
       slave1.vm.provision "shell", inline: "echo zk://#{master_ip}:2181/mesos > /etc/mesos/zk"
       slave1.vm.provision "shell", inline: "echo #{slave1_ip} > /etc/mesos-slave/ip"
-      slave1.vm.provision "shell", path: "../files/mesos-slave-start.sh"
+      slave1.vm.provision "shell", path: "../../files/mesos-slave-start.sh"
       slave1.vm.provision "shell" do |s|
         s.path = "../haaaaaaaack.sh"
         s.args = ["#{master_ip}", "5051"]

@@ -1,0 +1,4 @@
+key_name = "name of private key, in aws settings"
+key_file = "path to private key file"
+#zone_id = "FAKEZONEID"
+#mesos_dns = "mesos.example.com"

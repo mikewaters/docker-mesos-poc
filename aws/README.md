@@ -1,4 +1,11 @@
-## Running
+## Variants
+1. cluster - Starts master and slave nodes
+2. combined - starts a single node having both roles
+
+## Prerequisities
+Fill out .tfvars file with private key info
+
+## Running a variant
 
     export AWS_ACCESS_KEY_ID=xxx
     export AWS_SECRET_ACCESS_KEY=yyy

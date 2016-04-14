@@ -1,4 +1,4 @@
 *.tfvars
 *.tfstate*
 *.tfplan
-.vagrant.d
+.vagrant
